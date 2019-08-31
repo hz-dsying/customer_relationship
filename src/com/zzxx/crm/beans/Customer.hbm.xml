@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.zzxx.crm.beans">
+	<class name="Customer" table="cst_customer">
+		<id name="cust_id" >
+			<generator class="native" >
+			</generator>
+		</id>
+		<property name="cust_name" ></property>
+		<property name="cust_source"></property>
+		<property name="cust_industry"></property>
+		<property name="cust_linkman"></property>
+		<property name="cust_level"></property>
+		<property name="cust_phone"></property>
+		<property name="cust_mobile"></property>
+		
+		<!-- 配置一对多：
+				|- name：多的一方集合属性名
+				|- inverse：是否放弃外键维护
+					默认为"false"，不放弃
+					true，放弃维护，只有 1的一方 才能放弃
+				|- cascade：级联操作选项
+					save-update：保存Customer的时候，自带的Linkman一起保存
+					delete：级联删除
+					all：save-update + delete
+				key - column：表示自己被别人引用的外键名
+				one-to-many - class：多的一方的引用类型
+		 -->
+		<set name="linkmen" inverse="true" cascade="save-update">
+			<key column="lkm_cust_id"></key>	
+			<one-to-many class="Linkman"/>	
+		</set>
+	</class>
+</hibernate-mapping>
