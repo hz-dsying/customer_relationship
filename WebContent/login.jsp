@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/frameset.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
@@ -19,6 +20,13 @@ TD {
 
 <META content="MSHTML 6.00.6000.16809" name=GENERATOR>
 </HEAD>
+<script type="text/javascript">
+	onload = function(){
+		if(window.parent.location != window.location){
+			window.parent.location.href = "${pageContext.request.contextPath}/login.jsp";
+		}
+	};
+</script>
 <BODY>
 	<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/UserAction_login"
 		onsubmit="javascript:return WebForm_OnSubmit();" method=post>
@@ -53,7 +61,7 @@ TD {
 														<TR>
 															<TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
 															<TD style="HEIGHT: 28px" width=150><INPUT id=txtName
-																style="WIDTH: 130px" name=user_code></TD>
+																style="WIDTH: 130px" name=user_code value="${param.user_code }"></TD>
 															<TD style="HEIGHT: 28px" width=370><SPAN
 																id=RequiredFieldValidator3
 																style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN></TD>
@@ -73,8 +81,11 @@ TD {
 															<TD style="HEIGHT: 28px">&nbsp;</TD>
 														</TR>
 														<TR>
-															<TD style="HEIGHT: 18px"></TD>
-															<TD style="HEIGHT: 18px"></TD>
+															<TD style="HEIGHT: 18px" colspan="2">
+																<font color="red">
+																	<s:property value="exception.message"/>
+																</font>
+															</TD>
 															<TD style="HEIGHT: 18px"></TD>
 														</TR>
 														<TR>
@@ -100,6 +111,7 @@ TD {
 				</TABLE>
 			</DIV>
 		</DIV>
+		<s:debug></s:debug>
 
 
 	</FORM>
