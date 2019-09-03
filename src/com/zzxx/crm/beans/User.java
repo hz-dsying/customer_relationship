@@ -75,6 +75,12 @@ public class User {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", user_code=" + user_code + ", user_name=" + user_name + ", user_password="
+				+ user_password + ", user_state=" + user_state + "]";
+	}
+	
 
 	
 	  
