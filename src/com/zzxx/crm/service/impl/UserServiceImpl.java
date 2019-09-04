@@ -28,11 +28,10 @@ public class UserServiceImpl implements UserService {
 	
 		List<User> list = ud.findUserDetachedCriteria(dc);
 		tx.commit();
-		if(list.size() == 0) {
+		if(list.isEmpty()) {
 			throw new LoginException("用户名/密码错误！");
-		}else {
-			return list.get(0);
 		}
+		return list.get(0);
 	}
 
 }
